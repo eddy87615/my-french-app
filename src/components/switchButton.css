@@ -1,0 +1,19 @@
+.switch__button__wrapper {
+  display: flex;
+  justify-content: center;
+
+  gap: 16px;
+
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.switch__button {
+  padding: 4px 8px;
+  width: 80px;
+
+  border: 1px solid #b0b0b0;
+  background-color: #fff;
+
+  cursor: pointer;
+}

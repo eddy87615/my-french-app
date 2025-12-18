@@ -1,27 +1,24 @@
-import { useFetchWords } from "../hooks/useGetWords";
-const sheetName = ["連接詞", "限定詞", "代詞", "副詞", "介詞"];
+import "./switchButton.css";
 
-export default function SwitchButton() {
-  const {
-    words,
-    isLoading,
-    error,
-    currentPage,
-    totalPages,
-    totalWords,
-    setCurrentPage,
-    setActiveSheet,
-    activeSheet,
-  } = useFetchWords("連接詞");
+const sheetName = ["名詞", "動詞", "連接詞", "限定詞", "代詞", "副詞", "介詞"];
+interface SwitchProps {
+  activeSheet: string;
+  setActiveSheet: (sheet: string) => void;
+}
 
-  const currentSheet =
-    sheetName.find((name) => name === words[0]?.type) || "單字類型";
-
+export default function SwitchButton({
+  activeSheet,
+  setActiveSheet,
+}: SwitchProps) {
   return (
     <>
-      <div className="sheet-tabs">
+      <div className="switch__button__wrapper">
         {sheetName.map((name) => (
-          <button key={name} onClick={() => setActiveSheet(name)}>
+          <button
+            key={name}
+            onClick={() => setActiveSheet(name)}
+            className="switch__button"
+          >
             {name}
           </button>
         ))}

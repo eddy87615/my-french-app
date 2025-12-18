@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 
 const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
 const SHEET_ID = import.meta.env.VITE_GOOGLE_SHEET_ID;
-const DEFAULT_ITEMS_PER_PAGE = 50; // 每頁顯示 50 筆
+const DEFAULT_ITEMS_PER_PAGE = 10;
 
 interface Word {
   french: string;
@@ -26,13 +26,10 @@ interface FetchResult {
   totalPages: number;
   totalWords: number;
   setCurrentPage: (page: number) => void;
-  setActiveSheet: (sheet: string) => void; // 用來切換單字類型的函式
+  setActiveSheet: (sheet: string) => void;
   activeSheet: string;
 }
-/**
- * Custom Hook: 負責從 Google Sheets API 獲取指定工作表的單字，並處理分頁邏輯。
- * @param initialSheetName 應用程式啟動時預設載入的工作表名稱（例如 '連接詞'）
- */
+
 export const useFetchWords = (initialSheetName: string): FetchResult => {
   const [activeSheet, setActiveSheet] = useState(initialSheetName);
   const [currentPage, setCurrentPage] = useState(1);

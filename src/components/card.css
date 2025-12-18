@@ -1,0 +1,72 @@
+.card__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card__box {
+  box-shadow: 0 0 8px #e8e8e8;
+
+  padding: 8px;
+
+  position: relative;
+}
+.card__gender--m {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  width: 32px;
+  height: 32px;
+  margin: 0;
+
+  background-color: #646cff;
+  color: #fff;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.card__gender--f {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  width: 32px;
+  height: 32px;
+  margin: 0;
+
+  background-color: #ff6f91;
+  color: #fff;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.card__gender--mf {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  width: 32px;
+  height: 32px;
+  margin: 0;
+
+  background-color: #76db6a;
+  color: #fff;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card__example__box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card__example {
+  padding: 4px;
+  background-color: #f1f1f1;
+}
