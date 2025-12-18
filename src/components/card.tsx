@@ -6,7 +6,7 @@ interface CardProps {
   error: string | null;
 }
 
-export default function Card({ words, isLoading, error }: CardProps) {
+export default function Card({ words, isLoading }: CardProps) {
   return (
     <>
       {isLoading ? (
