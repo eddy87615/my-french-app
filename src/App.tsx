@@ -3,6 +3,7 @@ import Card from "./components/card";
 import Pagination from "./components/pagination";
 import SwitchButton from "./components/switchButton";
 import "./App.css";
+import Loading from "./components/loading";
 
 function App() {
   const {

@@ -1,5 +1,6 @@
 import "./card.css";
 import { AiOutlineSound } from "react-icons/ai";
+import Loading from "./loading";
 
 interface CardProps {
   words: any[]; // 這裡的類型可以根據你的 Word 介面調整
@@ -17,7 +18,7 @@ export default function Card({ words, isLoading }: CardProps) {
   return (
     <>
       {isLoading ? (
-        <p>載入中...</p>
+        <Loading />
       ) : (
         <div className="card__wrapper">
           {words.map((word, index) => (
@@ -49,6 +50,7 @@ export default function Card({ words, isLoading }: CardProps) {
               )}
               <p>{word.phonetic}</p>
               <p>{word.chinese}</p>
+              {word.notes && <p className="card__notes">{word.notes}</p>}
               <ul className="card__example__box">
                 {[
                   { fr: word.example1_fr, cn: word.example1_cn },

@@ -50,6 +50,9 @@ export const useFetchWords = (initialSheetName: string): FetchResult => {
     // 檢查是否所有必要的變數都已存在
     if (!API_KEY || !SHEET_ID || !activeSheet) return;
 
+    // 設置 loading 狀態
+    setIsLoading(true);
+
     // 請求整個 A 欄來確定總行數 (非常輕量的請求)
     const fetchTotalCount = async () => {
       // 請求整個 A 欄: [sheetName]!A:A
@@ -74,6 +77,7 @@ export const useFetchWords = (initialSheetName: string): FetchResult => {
         console.error("Fetch total count error:", err);
         setError("無法連接 Google Sheets，請檢查網路或 API 設定。");
         setTotalWords(0);
+        setIsLoading(false);
       }
     };
 
@@ -89,8 +93,6 @@ export const useFetchWords = (initialSheetName: string): FetchResult => {
       setIsLoading(false);
       return;
     }
-
-    setIsLoading(true);
 
     // 1. 計算 Range
     const startRow = (currentPage - 1) * DEFAULT_ITEMS_PER_PAGE + 2; // +2 因為 A1 是標題
@@ -138,7 +140,7 @@ export const useFetchWords = (initialSheetName: string): FetchResult => {
     };
 
     fetchPageData();
-  }, [activeSheet, currentPage, totalWords]); // 依賴項：工作表、頁碼、總數
+  }, [currentPage, totalWords]); // 依賴項：頁碼、總數（移除 activeSheet 避免重複觸發）
 
   // ------------------------------------------------
   // 步驟 C: 返回給組件的資料和控制函式
