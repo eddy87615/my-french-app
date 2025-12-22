@@ -1,9 +1,16 @@
 import "./card.css";
+import { AiOutlineSound } from "react-icons/ai";
 
 interface CardProps {
   words: any[]; // 這裡的類型可以根據你的 Word 介面調整
   isLoading: boolean;
   error: string | null;
+}
+
+function speakFrench(text: string) {
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "fr-FR";
+  speechSynthesis.speak(utterance);
 }
 
 export default function Card({ words, isLoading }: CardProps) {
@@ -15,7 +22,16 @@ export default function Card({ words, isLoading }: CardProps) {
         <div className="card__wrapper">
           {words.map((word, index) => (
             <div className="card__box" key={index}>
-              <h3>{word.french}</h3>
+              <div className="card__title__wrapper">
+                <h3 className="card__title">{word.french}</h3>
+                <button
+                  className="card__speak__btn"
+                  onClick={() => speakFrench(word.french)}
+                  aria-label="發音"
+                >
+                  <AiOutlineSound />
+                </button>
+              </div>
               {word.gender === "-" ? (
                 ""
               ) : (
@@ -34,18 +50,29 @@ export default function Card({ words, isLoading }: CardProps) {
               <p>{word.phonetic}</p>
               <p>{word.chinese}</p>
               <ul className="card__example__box">
-                <div className="card__example">
-                  <li>{word.example1_fr}</li>
-                  <li>{word.example1_cn}</li>
-                </div>
-                <div className="card__example">
-                  <li>{word.example2_fr}</li>
-                  <li>{word.example2_cn}</li>
-                </div>
-                <div className="card__example">
-                  <li>{word.example3_fr}</li>
-                  <li>{word.example3_cn}</li>
-                </div>
+                {[
+                  { fr: word.example1_fr, cn: word.example1_cn },
+                  { fr: word.example2_fr, cn: word.example2_cn },
+                  { fr: word.example3_fr, cn: word.example3_cn },
+                ]
+                  .filter((example) => example.fr || example.cn)
+                  .map((example, idx) => (
+                    <div className="card__example" key={idx}>
+                      <div className="example__french">
+                        <li>{example.fr}</li>
+                        {example.fr && (
+                          <button
+                            className="card__speak__btn"
+                            onClick={() => speakFrench(example.fr)}
+                            aria-label="發音"
+                          >
+                            <AiOutlineSound />
+                          </button>
+                        )}
+                      </div>
+                      <li>{example.cn}</li>
+                    </div>
+                  ))}
               </ul>
             </div>
           ))}

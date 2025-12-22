@@ -1,3 +1,6 @@
+import "./pagination.css";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
@@ -21,13 +24,14 @@ export default function Pagination({
           setCurrentPage(currentPage - 1);
           window.scrollTo(0, 0); // 換頁後自動回到最上面
         }}
+        className="pagination__button"
       >
-        上一頁
+        <IoIosArrowBack />
       </button>
 
-      <span>
+      <span className="pagination__pages">
         {" "}
-        第 {currentPage} 頁 / 共 {totalPages} 頁 (總計 {totalWords} 筆){" "}
+        {currentPage}/{totalPages}(總計 {totalWords} 筆){" "}
       </span>
 
       <button
@@ -36,8 +40,9 @@ export default function Pagination({
           setCurrentPage(currentPage + 1);
           window.scrollTo(0, 0);
         }}
+        className="pagination__button"
       >
-        下一頁
+        <IoIosArrowForward />
       </button>
     </div>
   );
