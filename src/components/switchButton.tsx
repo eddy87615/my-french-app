@@ -1,6 +1,15 @@
 import "./switchButton.css";
 
-const sheetName = ["名詞", "動詞", "連接詞", "限定詞", "代詞", "副詞", "介詞"];
+const sheetName = [
+  "名詞",
+  "動詞",
+  "形容詞",
+  "連接詞",
+  "限定詞",
+  "代詞",
+  "副詞",
+  "介詞",
+];
 interface SwitchProps {
   activeSheet: string;
   setActiveSheet: (sheet: string) => void;

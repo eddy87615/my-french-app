@@ -48,7 +48,7 @@ export default function Card({ words, isLoading }: CardProps) {
                   {word.gender}
                 </p>
               )}
-              <p>{word.phonetic}</p>
+              <p className="card__phonetic">{word.phonetic}</p>
               <p>{word.chinese}</p>
               {word.notes && <p className="card__notes">{word.notes}</p>}
               <ul className="card__example__box">
